@@ -21,7 +21,7 @@ RESOLVER = Flask('resolver')
 
 
 class ShortURL(JSONModel):
-    """Table for URLs."""
+    """Table for shortened URLs."""
 
     class Meta:
         table_name = 'short_url'
