@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from string import ascii_letters, digits
+from typing import Union
 
 from flask import Flask, Response, redirect, request
 from peewee import AutoField, TextField
@@ -40,6 +41,12 @@ class ShortURL(JSONModel):
     def hash(self) -> str:
         """Returns the URL's hash."""
         return encode(self.id, POOL)
+
+    def to_json(self) -> dict[str, Union[int, str]]:
+        """Return a JSON-ish dict."""
+        json = super().to_json()
+        json['hash'] = self.hash
+        return json
 
 
 @MANAGER.route('/', methods=['POST'], strict_slashes=False)
