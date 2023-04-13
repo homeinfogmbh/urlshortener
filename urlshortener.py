@@ -64,6 +64,13 @@ def delete_url(hash_: str) -> JSONMessage:
     return JSONMessage('Short URL deleted.', status=200)
 
 
+@MANAGER.route('/', methods=['GET'], strict_slashes=False)
+def list_short_urls() -> JSON:
+    """List short URLs."""
+
+    return JSON([short_url.to_json() for short_url in ShortURL])
+
+
 @RESOLVER.route('/<hash_>', methods=['GET'])
 def resolve_url(hash_: str) -> Response:
     """Resolve a URL."""
