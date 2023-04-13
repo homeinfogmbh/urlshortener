@@ -44,7 +44,7 @@ class ShortURL(JSONModel):
 
 @MANAGER.route('/', methods=['POST'], strict_slashes=False)
 def add_short_url() -> JSON:
-    """Add a new URL."""
+    """Add a new short URL."""
 
     url = ShortURL(url=request.json)
     url.save()
@@ -53,7 +53,7 @@ def add_short_url() -> JSON:
 
 @MANAGER.route('/<hash_>', methods=['DELETE'])
 def delete_short_url(hash_: str) -> JSONMessage:
-    """Add a new URL."""
+    """Delete a short URL."""
 
     try:
         short_url = ShortURL.by_hash(hash_)
