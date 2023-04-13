@@ -72,7 +72,7 @@ def list_short_urls() -> JSON:
 
 
 @RESOLVER.route('/<hash_>', methods=['GET'])
-def resolve_url(hash_: str) -> Response:
-    """Resolve a URL."""
+def resolve_short_url(hash_: str) -> Response:
+    """Resolve a short URL."""
 
     return redirect(ShortURL.by_hash(hash_).url)
