@@ -48,7 +48,7 @@ def add_short_url() -> JSON:
 
     url = ShortURL(url=request.json)
     url.save()
-    return JSON(url.id)
+    return JSON(url.hash)
 
 
 @MANAGER.route('/<hash_>', methods=['DELETE'])
