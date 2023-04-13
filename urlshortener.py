@@ -47,7 +47,7 @@ def add_short_url() -> JSON:
     """Add a new short URL."""
 
     try:
-        short_url = ShortURL.get(request.json)
+        short_url = ShortURL.get(ShortURL.url == request.json)
     except ShortURL.DoesNotExist:
         short_url = ShortURL(url=request.json)
         short_url.save()
