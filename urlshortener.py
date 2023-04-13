@@ -46,9 +46,13 @@ class ShortURL(JSONModel):
 def add_short_url() -> JSON:
     """Add a new short URL."""
 
-    url = ShortURL(url=request.json)
-    url.save()
-    return JSON(url.hash)
+    try:
+        short_url = ShortURL.get(request.json)
+    except ShortURL.DoesNotExist:
+        short_url = ShortURL(url=request.json)
+        short_url.save()
+
+    return JSON(short_url.hash)
 
 
 @MANAGER.route('/<hash_>', methods=['DELETE'])
