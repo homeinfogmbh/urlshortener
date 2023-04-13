@@ -56,11 +56,11 @@ def delete_url(hash_: str) -> JSONMessage:
     """Add a new URL."""
 
     try:
-        url = ShortURL.by_hash(hash_)
+        short_url = ShortURL.by_hash(hash_)
     except ShortURL.DoesNotExist:
         return JSONMessage('No such URL', status=404)
 
-    url.delete_instance()
+    short_url.delete_instance()
     return JSONMessage('Short URL deleted.', status=200)
 
 
