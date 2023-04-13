@@ -68,4 +68,4 @@ def delete_url(hash_: str) -> JSONMessage:
 def resolve_url(hash_: str) -> Response:
     """Resolve a URL."""
 
-    return redirect(ShortURL.by_hash(hash_))
+    return redirect(ShortURL.by_hash(hash_).url)
