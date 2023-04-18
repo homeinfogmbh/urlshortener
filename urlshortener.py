@@ -18,6 +18,11 @@ __all__ = ['MANAGER', 'RESOLVER', 'ShortURL']
 DATABASE = MySQLDatabaseProxy('urlshortener')
 MANAGER = Flask('manager')
 POOL = ascii_letters + digits
+EXCLUDE = '0oO1ilIL'
+
+for excluded in EXCLUDE:
+    POOL = POOL.replace(excluded, '')
+
 RESOLVER = Flask('resolver')
 
 
